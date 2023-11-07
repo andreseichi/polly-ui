@@ -1,0 +1,3 @@
+{
+  "extends": "@polly-ui/eslint-config"
+}

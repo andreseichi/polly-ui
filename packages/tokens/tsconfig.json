@@ -1,0 +1,4 @@
+{
+  "extends": "@polly-ui/ts-config/base.json",
+  "include": ["src/**/*"]
+}
