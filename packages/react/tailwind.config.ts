@@ -1,3 +1,5 @@
+import { extendTailwindMerge } from "tailwind-merge";
+
 import {
   colors,
   fonts,
@@ -57,5 +59,16 @@ const config: Config = {
   },
   plugins: [],
 };
+
+export const twMerge = extendTailwindMerge({
+  extend: {
+    classGroups: {
+      "font-size": Object.keys(fontSizes).map((key) => `text-${key}`),
+      "font-weight": Object.keys(fontWeights).map((key) => `font-${key}`),
+      leading: Object.keys(lineHeights).map((key) => `leading-${key}`),
+      rounded: Object.keys(radii).map((key) => `rounded-${key}`),
+    },
+  },
+});
 
 export default config;
