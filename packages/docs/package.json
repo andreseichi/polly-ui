@@ -12,9 +12,11 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.0.14",
     "@polly-ui/eslint-config": "*",
     "@polly-ui/react": "*",
     "@polly-ui/tokens": "*",
+    "@storybook/addon-a11y": "^7.5.3",
     "polished": "^4.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
