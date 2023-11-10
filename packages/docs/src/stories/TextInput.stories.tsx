@@ -4,8 +4,15 @@ import { Box, Text, TextInput, TextInputProps } from "@polly-ui/react/dist";
 export default {
   title: "UI/Form/Text Input",
   component: TextInput,
-  argTypes: {},
-  args: {},
+  argTypes: {
+    variant: {
+      options: ["sm", "md"],
+      control: { type: "inline-radio" },
+    },
+  },
+  args: {
+    variant: "md",
+  },
   decorators: [
     (Story) => (
       <Box style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>

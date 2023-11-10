@@ -3,7 +3,7 @@ import { ReactNode, ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";
 
 const boxStyles = cva(
-  "mx-auto w-full rounded-md border-[1px] border-solid border-gray-600 bg-gray-800 p-4 shadow-lg",
+  "mx-auto w-full rounded-md border-[1px] border-solid border-gray-600 bg-gray-800 p-6 shadow-lg",
 );
 
 export interface BoxProps extends ComponentProps<"div"> {

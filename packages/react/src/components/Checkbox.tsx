@@ -5,8 +5,8 @@ import { twMerge } from "tailwind-merge";
 
 const checkbox = cva(
   [
-    "rounded-xs leading-[0] cursor-pointer box-border bg-gray-900 flex items-center justify-center border-[2px] border-solid border-gray-900 data-[state=checked]:bg-polly-300",
-    "focus:border-polly-300",
+    "rounded-xs leading-[0] cursor-pointer box-border bg-gray-900 flex items-center justify-center border-[2px] border-solid border-gray-900",
+    "focus:border-polly-300 data-[state=checked]:bg-polly-300 data-[state=checked]:border-polly-300",
   ],
   {
     variants: {

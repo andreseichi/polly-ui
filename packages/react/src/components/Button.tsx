@@ -1,8 +1,9 @@
 import { VariantProps, cva } from "class-variance-authority";
 import { ComponentProps, ElementType } from "react";
+import { twMerge } from "../../tailwind.config";
 
 const buttonStyles = cva(
-  "box-border flex min-w-[120px] cursor-pointer items-center justify-center gap-2 px-0 py-4 rounded-sm text-center font-sans text-sm font-medium leading-tall disabled:cursor-not-allowed [&>svg]:w-4 [&>svg]:h-4",
+  "box-border flex min-w-[120px] cursor-pointer items-center justify-center gap-2 px-0 py-4 rounded-sm text-center font-sans text-sm font-medium leading-tall disabled:cursor-not-allowed [&>svg]:w-4 [&>svg]:h-4 focus:shadow-[0_0_0_2px] focus:shadow-gray-100",
   {
     variants: {
       variant: {
@@ -36,6 +37,9 @@ export interface Props
 
 export function Button({ variant, size, fullWidth, ...props }: Props) {
   return (
-    <button className={buttonStyles({ variant, size, fullWidth })} {...props} />
+    <button
+      className={twMerge(buttonStyles({ variant, size, fullWidth }))}
+      {...props}
+    />
   );
 }
