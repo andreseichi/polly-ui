@@ -1,6 +1,6 @@
 import { VariantProps, cva } from "class-variance-authority";
-import { ElementType, ReactNode } from "react";
-import { twMerge } from "../../tailwind.config";
+import { ElementType, HTMLAttributes, ReactNode, forwardRef } from "react";
+import { cn } from "@/lib/utils";
 
 const textStyles = cva("text-gray-100 leading-base m-0 font-sans", {
   variants: {
@@ -25,18 +25,26 @@ const textStyles = cva("text-gray-100 leading-base m-0 font-sans", {
   },
 });
 
-export interface TextProps extends VariantProps<typeof textStyles> {
+export interface TextProps
+  extends HTMLAttributes<HTMLParagraphElement>,
+    VariantProps<typeof textStyles> {
   as?: ElementType;
   children: ReactNode;
   className?: string;
 }
 
-export function Text({ size, as = "p", className, children }: TextProps) {
-  const Element = as;
+const Text = forwardRef(
+  ({ size, as = "p", className, children, ...props }: TextProps) => {
+    const Element = as;
 
-  return (
-    <Element className={twMerge(textStyles({ size }), className)}>
-      {children}
-    </Element>
-  );
-}
+    return (
+      <Element className={cn(textStyles({ size }), className)} {...props}>
+        {children}
+      </Element>
+    );
+  },
+);
+
+Text.displayName = "Text";
+
+export { Text };

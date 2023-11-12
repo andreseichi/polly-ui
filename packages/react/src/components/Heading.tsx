@@ -1,6 +1,6 @@
+import { cn } from "@/lib/utils";
 import { VariantProps, cva } from "class-variance-authority";
-import { ElementType, ReactNode } from "react";
-import { twMerge } from "tailwind-merge";
+import { ElementType, HTMLAttributes, ReactNode, forwardRef } from "react";
 
 const headingStyles = cva("leading-shorter m-0 font-sans text-gray-100", {
   variants: {
@@ -20,15 +20,25 @@ const headingStyles = cva("leading-shorter m-0 font-sans text-gray-100", {
   },
 });
 
-export interface HeadingProps extends VariantProps<typeof headingStyles> {
+export interface HeadingProps
+  extends HTMLAttributes<HTMLHeadingElement>,
+    VariantProps<typeof headingStyles> {
   as?: ElementType;
   children: ReactNode;
 }
 
-export function Heading({ size, as = "h2", children }: HeadingProps) {
-  const Element = as;
+const Heading = forwardRef(
+  ({ size, as = "h2", children, ...props }: HeadingProps) => {
+    const Element = as;
 
-  return (
-    <Element className={twMerge(headingStyles({ size }))}>{children}</Element>
-  );
-}
+    return (
+      <Element className={cn(headingStyles({ size }))} {...props}>
+        {children}
+      </Element>
+    );
+  },
+);
+
+Heading.displayName = "Heading";
+
+export { Heading };

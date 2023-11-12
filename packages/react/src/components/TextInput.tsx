@@ -1,7 +1,7 @@
+import { cn } from "@/lib/utils";
 import { VariantProps, cva } from "class-variance-authority";
 
 import { InputHTMLAttributes, forwardRef } from "react";
-import { twMerge } from "tailwind-merge";
 
 const textInputStyles = cva(
   [
@@ -30,7 +30,7 @@ export interface TextInputProps
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   ({ prefix, variant, type, ...props }, ref) => {
     return (
-      <div className={twMerge(textInputStyles({ variant }))}>
+      <div className={cn(textInputStyles({ variant }))}>
         {!!prefix && (
           <span className="font-sans text-sm font-regular text-gray-400">
             {prefix}

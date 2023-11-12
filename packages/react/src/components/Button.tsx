@@ -1,6 +1,6 @@
+import { cn } from "@/lib/utils";
 import { VariantProps, cva } from "class-variance-authority";
-import { ComponentProps, ElementType } from "react";
-import { twMerge } from "../../tailwind.config";
+import { ButtonHTMLAttributes, ElementType, forwardRef } from "react";
 
 const buttonStyles = cva(
   "box-border flex min-w-[120px] cursor-pointer items-center justify-center gap-2 px-0 py-4 rounded-sm text-center font-sans text-sm font-medium leading-tall disabled:cursor-not-allowed [&>svg]:w-4 [&>svg]:h-4 focus:shadow-[0_0_0_2px] focus:shadow-gray-100",
@@ -29,17 +29,23 @@ const buttonStyles = cva(
   },
 );
 
-export interface Props
-  extends ComponentProps<"button">,
+export interface ButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonStyles> {
   as?: ElementType;
 }
 
-export function Button({ variant, size, fullWidth, ...props }: Props) {
-  return (
-    <button
-      className={twMerge(buttonStyles({ variant, size, fullWidth }))}
-      {...props}
-    />
-  );
-}
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ variant, size, fullWidth, ...props }: ButtonProps) => {
+    return (
+      <button
+        className={cn(buttonStyles({ variant, size, fullWidth }))}
+        {...props}
+      />
+    );
+  },
+);
+
+Button.displayName = "Button";
+
+export { Button };

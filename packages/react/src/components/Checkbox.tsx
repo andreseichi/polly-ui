@@ -1,7 +1,8 @@
+import { cn } from "@/lib/utils";
 import { Check } from "@phosphor-icons/react";
 import * as CheckboxRUI from "@radix-ui/react-checkbox";
 import { cva, type VariantProps } from "class-variance-authority";
-import { twMerge } from "tailwind-merge";
+import { forwardRef } from "react";
 
 const checkbox = cva(
   [
@@ -25,12 +26,16 @@ export interface CheckboxProps
   extends CheckboxRUI.CheckboxProps,
     VariantProps<typeof checkbox> {}
 
-export const Checkbox = ({ size, ...props }: CheckboxProps) => {
+const Checkbox = forwardRef(({ size, ...props }: CheckboxProps) => {
   return (
-    <CheckboxRUI.Root className={twMerge(checkbox({ size }))} {...props}>
+    <CheckboxRUI.Root className={cn(checkbox({ size }))} {...props}>
       <CheckboxRUI.Indicator className="h-4 w-4 fill-white" asChild>
         <Check weight="bold" />
       </CheckboxRUI.Indicator>
     </CheckboxRUI.Root>
   );
-};
+});
+
+Checkbox.displayName = "Checkbox";
+
+export { Checkbox };

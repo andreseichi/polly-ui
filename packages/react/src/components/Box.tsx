@@ -1,20 +1,24 @@
+import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
-import { ReactNode, ComponentProps } from "react";
-import { twMerge } from "tailwind-merge";
+import { HTMLAttributes, ReactNode, forwardRef } from "react";
 
 const boxStyles = cva(
   "mx-auto w-full rounded-md border-[1px] border-solid border-gray-600 bg-gray-800 p-6 shadow-lg",
 );
 
-export interface BoxProps extends ComponentProps<"div"> {
+export interface BoxProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   className?: string;
 }
 
-export function Box({ children, className, ...props }: BoxProps) {
+const Box = forwardRef(({ children, className, ...props }: BoxProps) => {
   return (
-    <div className={twMerge(boxStyles(), className)} {...props}>
+    <div className={cn(boxStyles(), className)} {...props}>
       {children}
     </div>
   );
-}
+});
+
+Box.displayName = "Box";
+
+export { Box };

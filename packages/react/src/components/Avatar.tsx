@@ -1,7 +1,8 @@
-import * as AvatarRUI from "@radix-ui/react-avatar";
-import { type VariantProps, cva } from "class-variance-authority";
-import { twMerge } from "tailwind-merge";
+import { cn } from "@/lib/utils";
 import { User } from "@phosphor-icons/react";
+import * as AvatarRUI from "@radix-ui/react-avatar";
+import { cva, type VariantProps } from "class-variance-authority";
+import { forwardRef } from "react";
 
 const avatar = cva(
   "inline-flex select-none items-center justify-center overflow-hidden rounded-full align-middle",
@@ -26,11 +27,11 @@ export interface AvatarProps
   name?: string;
 }
 
-export function Avatar({ src, name, size, ...props }: AvatarProps) {
+const Avatar = forwardRef(({ src, name, size, ...props }: AvatarProps) => {
   const [firstName, lastName] = name?.split(" ") || [];
 
   return (
-    <AvatarRUI.Root className={twMerge(avatar({ size }))}>
+    <AvatarRUI.Root className={cn(avatar({ size }))}>
       <AvatarRUI.Image
         className="h-full w-full rounded-[inherit] object-cover"
         src={src || undefined}
@@ -52,6 +53,8 @@ export function Avatar({ src, name, size, ...props }: AvatarProps) {
       </AvatarRUI.Fallback>
     </AvatarRUI.Root>
   );
-}
+});
 
-export default Avatar;
+Avatar.displayName = "Avatar";
+
+export { Avatar };
