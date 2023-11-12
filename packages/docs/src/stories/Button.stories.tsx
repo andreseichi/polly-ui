@@ -1,5 +1,5 @@
 import type { StoryObj, Meta } from "@storybook/react";
-import { Button, Props } from "@polly-ui/react/dist";
+import { Button, ButtonProps } from "@polly-ui/react/dist";
 import { ArrowRight } from "@phosphor-icons/react";
 
 export default {
@@ -37,31 +37,31 @@ export default {
     fullWidth: false,
     disabled: false,
   },
-} satisfies Meta<Props>;
+} satisfies Meta<ButtonProps>;
 
-export const Primary: StoryObj<Props> = {};
+export const Primary: StoryObj<ButtonProps> = {};
 
-export const Secondary: StoryObj<Props> = {
+export const Secondary: StoryObj<ButtonProps> = {
   args: {
     variant: "secondary",
     children: "click me",
   },
 };
 
-export const Tertiary: StoryObj<Props> = {
+export const Tertiary: StoryObj<ButtonProps> = {
   args: {
     variant: "tertiary",
     children: "click me",
   },
 };
 
-export const Small: StoryObj<Props> = {
+export const Small: StoryObj<ButtonProps> = {
   args: {
     size: "sm",
   },
 };
 
-export const WithIcon: StoryObj<Props> = {
+export const WithIcon: StoryObj<ButtonProps> = {
   args: {
     children: (
       <>
@@ -72,7 +72,7 @@ export const WithIcon: StoryObj<Props> = {
   },
 };
 
-export const Disabled: StoryObj<Props> = {
+export const Disabled: StoryObj<ButtonProps> = {
   args: {
     variant: "primary",
     disabled: true,
