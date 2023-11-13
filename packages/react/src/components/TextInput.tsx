@@ -39,8 +39,8 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
 
         <input
           type={type}
-          aria-label={props["aria-label"]}
           ref={ref}
+          aria-label={props["aria-label"]}
           className="w-full border-none bg-transparent font-sans text-sm font-regular text-white placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed"
           {...props}
         />

@@ -11,9 +11,11 @@ export interface TextAreaProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement>,
     VariantProps<typeof textAreaStyles> {}
 
-const TextArea = forwardRef(({ ...props }: TextAreaProps) => {
-  return <textarea className={cn(textAreaStyles())} {...props} />;
-});
+const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+  ({ ...props }, ref) => {
+    return <textarea className={cn(textAreaStyles())} ref={ref} {...props} />;
+  },
+);
 
 TextArea.displayName = "TextArea";
 

@@ -27,12 +27,12 @@ export interface HeadingProps
   children: ReactNode;
 }
 
-const Heading = forwardRef(
-  ({ size, as = "h2", children, ...props }: HeadingProps) => {
+const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
+  ({ size, as = "h2", children, ...props }, ref) => {
     const Element = as;
 
     return (
-      <Element className={cn(headingStyles({ size }))} {...props}>
+      <Element className={cn(headingStyles({ size }))} ref={ref} {...props}>
         {children}
       </Element>
     );

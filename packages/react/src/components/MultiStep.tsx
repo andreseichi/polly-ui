@@ -12,10 +12,10 @@ export interface MultiStepProps {
   size: TextPropsWithOnlySize["size"];
 }
 
-const MultiStep = forwardRef(
-  ({ currentStep = 1, totalSteps, size = "xs" }: MultiStepProps) => {
+const MultiStep = forwardRef<HTMLDivElement, MultiStepProps>(
+  ({ currentStep = 1, totalSteps, size = "xs" }, ref) => {
     return (
-      <div>
+      <div ref={ref}>
         <Text size={size} className="text-gray-200">
           Step {currentStep} of {totalSteps}
         </Text>

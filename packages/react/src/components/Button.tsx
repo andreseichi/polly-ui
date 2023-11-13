@@ -36,10 +36,11 @@ export interface ButtonProps
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant, size, fullWidth, ...props }: ButtonProps) => {
+  ({ variant, size, fullWidth, ...props }, ref) => {
     return (
       <button
         className={cn(buttonStyles({ variant, size, fullWidth }))}
+        ref={ref}
         {...props}
       />
     );

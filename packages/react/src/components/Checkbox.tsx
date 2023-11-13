@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { Check } from "@phosphor-icons/react";
 import * as CheckboxRUI from "@radix-ui/react-checkbox";
 import { cva, type VariantProps } from "class-variance-authority";
-import { forwardRef } from "react";
+import { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react";
 
 const checkbox = cva(
   [
@@ -23,18 +23,20 @@ const checkbox = cva(
 );
 
 export interface CheckboxProps
-  extends CheckboxRUI.CheckboxProps,
+  extends ComponentPropsWithoutRef<typeof CheckboxRUI.Root>,
     VariantProps<typeof checkbox> {}
 
-const Checkbox = forwardRef(({ size, ...props }: CheckboxProps) => {
-  return (
-    <CheckboxRUI.Root className={cn(checkbox({ size }))} {...props}>
-      <CheckboxRUI.Indicator className="h-4 w-4 fill-white" asChild>
-        <Check weight="bold" />
-      </CheckboxRUI.Indicator>
-    </CheckboxRUI.Root>
-  );
-});
+const Checkbox = forwardRef<ElementRef<typeof CheckboxRUI.Root>, CheckboxProps>(
+  ({ size, ...props }, ref) => {
+    return (
+      <CheckboxRUI.Root className={cn(checkbox({ size }))} ref={ref} {...props}>
+        <CheckboxRUI.Indicator className="h-4 w-4 fill-white" asChild>
+          <Check weight="bold" />
+        </CheckboxRUI.Indicator>
+      </CheckboxRUI.Root>
+    );
+  },
+);
 
 Checkbox.displayName = "Checkbox";
 

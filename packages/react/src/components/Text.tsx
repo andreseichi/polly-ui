@@ -33,12 +33,16 @@ export interface TextProps
   className?: string;
 }
 
-const Text = forwardRef(
-  ({ size, as = "p", className, children, ...props }: TextProps) => {
+const Text = forwardRef<HTMLParagraphElement, TextProps>(
+  ({ size, as = "p", className, children, ...props }, ref) => {
     const Element = as;
 
     return (
-      <Element className={cn(textStyles({ size }), className)} {...props}>
+      <Element
+        className={cn(textStyles({ size }), className)}
+        ref={ref}
+        {...props}
+      >
         {children}
       </Element>
     );

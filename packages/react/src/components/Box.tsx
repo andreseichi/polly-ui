@@ -11,10 +11,10 @@ export interface BoxProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
 }
 
-const Box = forwardRef(({ children, className, ...props }: BoxProps) => {
+const Box = forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
   return (
-    <div className={cn(boxStyles(), className)} {...props}>
-      {children}
+    <div className={cn(boxStyles(), props.className)} ref={ref} {...props}>
+      {props.children}
     </div>
   );
 });
